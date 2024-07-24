@@ -1,28 +1,29 @@
 class Phonebook:
     class Node:
-        def __init__(self, name, phone, link):
+        def __init__(self, name, phone):
             self.name = name
             self.phone = phone
-            self.next = link
+            self.next = None
 
     def __init__(self):
         self.head = None
-        self.size = 0
-
-    def size(self): return self.size
-    def is_empty(self): return self.size == 0
 
     # 전화번호 등록
     def add_entry(self, name, phone):
+        newNode = self.Node(name, phone)
         if self.search(name) is not None:
             print("이미 있는 전화번호 입니다.")
         else:
-            if self.is_empty():
-                self.head = self.Node(name, phone, None)
+            if self.head is None or name < self.head.name:
+                newNode.next = self.head
+                self.head = newNode
             else:
-                self.head = self.Node(name, phone, self.head)
+                current = self.head
+                while current.next is not None and name > current.name:
+                    current = current.next
+                newNode.next = current.next
+                current.next = newNode
             print("전화번호가 추가되었습니다.")
-            self.size += 1
 
     def modify(self, name, phone): # 전화번호 수정
         number = self.search(name)
@@ -39,7 +40,7 @@ class Phonebook:
         # 삭제할 전화번호가 헤드라면
         if delete_node == self.head:
             self.head = self.head.next
-            self.size -= 1
+            del delete_node
         else:
             # 삭제할 노드의 전 노드를 찾아서 삭제할 노드의 앞 노드랑 연결
             before = self.head
@@ -56,6 +57,12 @@ class Phonebook:
                 return p
             p = p.next
         return None
+
+    def print_all(self):
+        current = self.head
+        while current:
+            print(current.name, current.phone)
+            current = current.next
 
 
 if __name__ == "__main__":
@@ -83,5 +90,7 @@ if __name__ == "__main__":
         elif choice == '5':
             print("프로그램을 종료합니다.")
             break
+        elif choice == '6':
+            phonebook.print_all()
         else:
             print("다시 입력해주세요")
