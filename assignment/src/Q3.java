@@ -9,7 +9,7 @@ public class Q3 {
         List<String> list = new ArrayList<>();
         List<Integer> numList = new ArrayList<>();
 
-        System.out.println("문자를 입력해주세요: ");
+        System.out.print("S = ");
         String words = scanner.nextLine();
 
         String[] word = words.split("");

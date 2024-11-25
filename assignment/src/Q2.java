@@ -18,16 +18,14 @@ public class Q2 {
 //        }
 //        System.out.println(list);
 
-        System.out.println("숫자를 입력해주세요: ex) 1, 2, 3, 4");
+//        System.out.println("숫자를 입력해주세요: ex) 1, 2, 3, 4");
+        System.out.print("num_list = ");
         String number = scanner.nextLine();
         String[] nums = number.split(",\\s*");
 
         for (String num : nums) {
             list.add(Integer.parseInt(num));
         }
-        System.out.println(list);
-
-
 
         System.out.println(solution(list));
     }

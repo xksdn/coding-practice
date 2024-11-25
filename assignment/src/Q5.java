@@ -7,7 +7,7 @@ public class Q5 {
         List<Integer> list = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("정수값들을 입력해주세요: ");
+        System.out.print("nums = ");
         String nums = scanner.nextLine();
 
         String[] num = nums.split(",\\s*");
@@ -21,13 +21,13 @@ public class Q5 {
             System.exit(0);
         }
 
-        System.out.println("목표 값을 정해주세요: ");
+        System.out.print("target = ");
         int target = scanner.nextInt();
 
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < i; j++) {
                 if (list.get(i) + list.get(j) == target) {
-                    System.out.println("[" + list.get(j) + "," +list.get(i) + "]");
+                    System.out.println(list.get(j) + "," +list.get(i));
                     System.exit(0);
                 }
             }

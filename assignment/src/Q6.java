@@ -7,6 +7,8 @@ public class Q6 {
 
         // muzi, frodo, apeach, neo
         // muzi frodo, apeach frodo, frodo neo, muzi neo, apeach muzi
+        // con, ryan
+        // ryan con, ryan con, ryan con, ryan con
 
 //        List<String> id_list = new ArrayList<>(Arrays.asList("muzi","frodo","apeach","neo"));
 //        List<String> report = new ArrayList<>(Arrays.asList("muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"));
@@ -51,7 +53,7 @@ public class Q6 {
         // report 입력
         System.out.println("신고 내역을 입력해주세요: ");
         String reports = scanner.nextLine();
-        String[] rep = reports.split(", ");
+        String[] rep = reports.split(",\\s*");
 
         // 1 <= report <= 200,000
         if (rep.length < 1 || rep.length > 200000) {
