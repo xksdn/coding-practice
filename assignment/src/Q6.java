@@ -5,12 +5,14 @@ public class Q6 {
         List<String> id_list = new ArrayList<>();
         List<String> report = new ArrayList<>();
 
-//
+        // muzi, frodo, apeach, neo
+        // muzi frodo, apeach frodo, frodo neo, muzi neo, apeach muzi
+
 //        List<String> id_list = new ArrayList<>(Arrays.asList("muzi","frodo","apeach","neo"));
 //        List<String> report = new ArrayList<>(Arrays.asList("muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"));
 //        int k = 2;
 //
-//        System.out.println(solution1(id_list, report, k));
+//        System.out.println(solution(id_list, report, k));
 
 
         Scanner scanner = new Scanner(System.in);
@@ -49,7 +51,7 @@ public class Q6 {
         // report 입력
         System.out.println("신고 내역을 입력해주세요: ");
         String reports = scanner.nextLine();
-        String[] rep = reports.split(",");
+        String[] rep = reports.split(", ");
 
         // 1 <= report <= 200,000
         if (rep.length < 1 || rep.length > 200000) {
@@ -62,9 +64,11 @@ public class Q6 {
                 System.out.println("범위를 벗어났습니다.");
                 System.exit(0);
             }
-            // 소문자만 가능
-            if (!re.chars().allMatch(Character::isLowerCase)) {
-                System.out.println("id는 소문자여야 합니다.");
+            // 소문자만 가능 (공백이 포함되면 소문자로 이루어있지 않다고 인식됨)
+            String[] names = re.split(" ");
+            if (!names[0].chars().allMatch(Character::isLowerCase)
+                    || !names[1].chars().allMatch(Character::isLowerCase)) {
+                System.out.println("report는 소문자여야 합니다.");
                 System.exit(0);
             }
             report.add(re);
@@ -79,7 +83,8 @@ public class Q6 {
             System.exit(0);
         }
 
-        solution(id_list, report, k);
+
+        System.out.println(solution(id_list, report, k));
 
     }
 
