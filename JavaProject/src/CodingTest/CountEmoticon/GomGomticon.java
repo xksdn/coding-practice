@@ -1,28 +1,48 @@
 package CodingTest.CountEmoticon;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class GomGomticon {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> nameList = new ArrayList<>();
 
-        System.out.println("N을 입력하시오.");
         int num = sc.nextInt();
+        sc.nextLine(); // 개행 제거
 
         for (int i = 0; i < num; i++) {
             String name = sc.nextLine();
             nameList.add(name);
         }
 
-        list(nameList);
+        System.out.println(list(nameList));
     }
 
-    public static void list(ArrayList<String> nameList) {
-        int count = nameList.stream()
-                .distinct()
-                .filter(x -> !x.contains(""))
+    public static long list(ArrayList<String> nameList) {
+        List<List<String>> partitions = new ArrayList<>();
+        List<String> currentPartition = new ArrayList<>();
+
+        for (String s : nameList) {
+            if (s.equals("ENTER")) {
+                if (!currentPartition.isEmpty()) {
+                    partitions.add(new ArrayList<>(currentPartition));
+                }
+                currentPartition.clear();
+            } else {
+                currentPartition.add(s);
+            }
+        }
+
+        // 마지막 파티션 추가
+        if (!currentPartition.isEmpty()) {
+            partitions.add(currentPartition);
+        }
+
+        // 고유한 사용자 수의 총합 계산
+        return partitions.stream()
+                .mapToLong(partition -> partition.stream().distinct().count())
+                .sum();
     }
 }
