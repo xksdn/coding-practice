@@ -1,4 +1,4 @@
-package centralMove;
+package CodingTest.centralMove;
 
 import java.util.Scanner;
 
